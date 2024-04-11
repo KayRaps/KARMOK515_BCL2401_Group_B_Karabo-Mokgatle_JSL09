@@ -1,15 +1,19 @@
+//Featch a random image from unsplash API
 fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
     .then(res => res.json())
     .then(data => {
+        //Set the background image to the image we fetched
         document.body.style.backgroundImage = `url(${data.urls.regular})`
+        //Set the author's name int he HTML element with id author
 		document.getElementById("author").textContent = `By: ${data.user.name}`
     })
     .catch(err => {
-        // Use a default background image/author
+        //I f an error occurs, use a default background image and author
         document.body.style.backgroundImage = `url(https://images.unsplash.com/photo-1560008511-11c63416e52d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMTEwMjl8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI4NDIxMTc&ixlib=rb-1.2.1&q=80&w=1080
 )`
 		document.getElementById("author").textContent = `By: Dodi Achmad`
     })
+//Fetch Dogecoins data from CoinGecko API
 
 fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
     .then(res => {
@@ -19,6 +23,7 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
         return res.json()
     })
     .then(data => {
+        //Display Dogecoin data in the HTML
         document.getElementById("crypto-top").innerHTML = `
             <img src=${data.image.small} />
             <span>${data.name}</span>
@@ -29,8 +34,9 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
             <p>👇: $${data.market_data.low_24h.usd}</p>
         `
     })
-    .catch(err => console.error(err))
-
+    .catch(err => console.error(err));
+    
+//Function to update the current time every second
 function getCurrentTime() {
     const date = new Date()
     document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
