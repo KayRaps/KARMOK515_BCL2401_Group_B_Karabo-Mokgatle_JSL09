@@ -16,26 +16,24 @@ document.getElementById("author").textContent = `By: ${data.user.name}`
     //})
 //Fetch Dogecoins data from CoinGecko API
 
-fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
-    .then(res => {
+const res = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
         if (!res.ok) {
             throw Error("Something went wrong")
         }
-        return res.json()
-    })
-    .then(data => {
-        //Display Dogecoin data in the HTML
-        document.getElementById("crypto-top").innerHTML = `
-            <img src=${data.image.small} />
-            <span>${data.name}</span>
+const data = await res.json()
+      //Display Dogecoin data in the HTML
+      document.getElementById("crypto-top").innerHTML = `
+      <img src=${data.image.small} />
+      <span>${data.name}</span>
+      
         `
         document.getElementById("crypto").innerHTML += `
             <p>🎯: $${data.market_data.current_price.usd}</p>
             <p>👆: $${data.market_data.high_24h.usd}</p>
             <p>👇: $${data.market_data.low_24h.usd}</p>
         `
-    })
-    .catch(err => console.error(err));
+    
+    //.catch(err => console.error(err));
     
 //Function to update the current time every second
 function getCurrentTime() {
@@ -43,7 +41,9 @@ function getCurrentTime() {
     document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
 }
 //Update the current time based on current geolocation every second
+
 setInterval(getCurrentTime, 1000)
+
 //Fetch weather data based on current geolocation
 
 navigator.geolocation.getCurrentPosition(position => {
