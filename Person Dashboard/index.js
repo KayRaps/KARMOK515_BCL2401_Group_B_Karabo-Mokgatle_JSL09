@@ -41,8 +41,9 @@ function getCurrentTime() {
     const date = new Date()
     document.getElementById("time").textContent = date.toLocaleTimeString("en-us", {timeStyle: "short"})
 }
-
+//Update the current time based on current geolocation every second
 setInterval(getCurrentTime, 1000)
+//Fetch weather data based on current geolocation
 
 navigator.geolocation.getCurrentPosition(position => {
     fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
