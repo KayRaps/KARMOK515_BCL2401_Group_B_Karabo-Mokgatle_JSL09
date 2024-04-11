@@ -73,3 +73,7 @@ p.weather-temp {
     font-size: 1.7rem;
     margin-left: -10px;
 }
+
+p#author {
+    font-size: 1rem;
+}
