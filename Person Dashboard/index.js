@@ -53,7 +53,7 @@ setInterval(getCurrentTime, 1000)
 
 //Fetch weather data based on current geolocation
 
-navigator.geolocation.getCurrentPosition(position => {
+navigator.geolocation.getCurrentPosition(async position => {
     try {
         const res = await fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
         if (!res.ok) {
