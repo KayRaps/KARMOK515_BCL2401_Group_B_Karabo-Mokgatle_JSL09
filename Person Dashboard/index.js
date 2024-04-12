@@ -12,7 +12,6 @@ document.getElementById("author").textContent = `By: ${data.user.name}`
 )`
     document.getElementById("author").textContent = `By: Dodi Achmad`
 }
-    
 
     //.catch(err => {
         //If an error occurs, use a default background image and author
@@ -22,22 +21,22 @@ document.getElementById("author").textContent = `By: ${data.user.name}`
     //})
 //Fetch Dogecoins data from CoinGecko API
 try {
-const res = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
+    const res = await fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
         if (!res.ok) {
             throw Error("Something went wrong")
-        }
-const data = await res.json()
+    }
+    const data = await res.json()
       //Display Dogecoin data in the HTML
-      document.getElementById("crypto-top").innerHTML = `
+    document.getElementById("crypto-top").innerHTML = `
       <img src=${data.image.small} />
       <span>${data.name}</span>
       
-        `
-        document.getElementById("crypto").innerHTML += `
+    `
+    document.getElementById("crypto").innerHTML += `
             <p>🎯: $${data.market_data.current_price.usd}</p>
             <p>👆: $${data.market_data.high_24h.usd}</p>
             <p>👇: $${data.market_data.low_24h.usd}</p>
-        `
+    `
     
     } catch (err) {
         console.error(err)
@@ -56,9 +55,9 @@ setInterval(getCurrentTime, 1000)
 
 navigator.geolocation.getCurrentPosition(position => {
     try {
-    const res = await fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
-            if (!res.ok) {
-                throw Error("Weather data not available")
+        const res = await fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
+        if (!res.ok) {
+            throw Error("Weather data not available")
             }
             const data = await res.json()
             const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
